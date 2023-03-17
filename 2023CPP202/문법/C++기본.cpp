@@ -1,6 +1,9 @@
-﻿#include <stdio.h>
+﻿#include <iostream>
+//cout객체사용
+
 int main() {
-	printf("hello world\n");
+	// << : 출력연산자
+	std::cout << "hello world\n";
 	
 	return 0;
 }
