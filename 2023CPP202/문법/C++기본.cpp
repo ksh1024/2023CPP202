@@ -9,8 +9,9 @@ int main() {
 	int year = 2023;
 
 	// << : 출력연산자
-	// endl :  개행 (줄바꿈)
-	cout << "hello world " << year << endl;
+	// endl :  개행 (줄바꿈) endline
+	cout << "hello world " << year << endl; 
+	
 	
 	return 0;
 }
