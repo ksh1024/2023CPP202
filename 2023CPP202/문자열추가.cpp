@@ -8,14 +8,12 @@
 
 using namespace std;
 int main() {
-	char str1[30] = "Jiwoo";
-	char str2[30] = "Rock";
+	string str1 = "Jiwoo";
+	string str2 = "Rock";
 
-	//str2의 문자열을 str1(목적지)에 추가함
-	strcat(str1, str2);
-
-
-	printf("%s", str1);
+	str1 = str1 + str2;
+	
+	cout << str1 << endl;
 
 	return 0;
 }
