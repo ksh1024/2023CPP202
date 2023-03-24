@@ -1,12 +1,11 @@
-﻿#include <stdio.h>
+﻿#include <stdio.h> 
+#include <string.h> //문자열 함수가 들어있음
 
 int main() {
 	char str1[30] = "";
 	char str2[30] = "Jiwoo";
 
-	for (int i = 0; str2[i] != '\0'; i++) { ///null이 아닐때까지
-		str1[i] = str2[i];
-	}
+	strcpy(str1,str2); //str1에 str2내용을 넣음
 	printf("%s \n", str1);
 
 	return 0;
