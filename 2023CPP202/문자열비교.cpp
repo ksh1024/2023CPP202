@@ -9,19 +9,18 @@
 using namespace std;
 
 int main() {
-	char str1[50] = "hello";
-	char str2[50] = "world"; //hello와world중 world가 더 큰값
-	
-	//문자열 비교(인자의 순서와 반환값이 헷갈림)
-	int result = strcmp(str1, str2);
-	if (result == 0) {
-		printf("str1 == str2");
+	string str1 = "hello";
+	string str2 = "world"; //hello와 world중 world가 더 큰값
+
+	if (str1 == str2) {
+		cout<<"str1 == str2";
 	}
-	else if (result == -1) {
-		printf("str1 < str2");
+	//str2가 str1보다 사전(dictionary)에 늦게 나오는 경우
+	else if (str1< str2) {
+		cout << "str1 < str2";
 	}
-	else if (result == 1) {
-		printf("str1 > str2");
+	else {
+		cout << "str1 > str2";
 	}
 
 	return 0;
