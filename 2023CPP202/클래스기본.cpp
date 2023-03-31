@@ -11,14 +11,19 @@ class Student {
 	// 성능 때문에 number를 문자열로 하지 않음
 	//일반적으로 문자열은 정수형 데이터보다 많은 메모리 공간을 요구하며
 	//정수는 비교연산을 한 번에 할 수 있으나, 문자열은 글자 수만큼 반복하여 비교해야 한다
-public :
+public:
 	int number;
 	string name;
 	string phone;
 	string major;
 	string address;
+
+	void print() {
+		cout << "학번 : " << number << "\n이름 : " << name << "\n번호 : " << phone << endl;
+		cout << "전공 : " << major << "\n주소 : " << address << endl;
+	}
 };
-int main(){
+int main() {
 	//자료형 : Student(Student앞에 class 생략 가능) 
 	Student a;
 	a.number = 2222;
@@ -27,8 +32,8 @@ int main(){
 	a.major = "뉴미디어소프트웨어";
 	a.address = "관악구";
 
+	a.print();
 
-	cout <<"학번 : " << a.number << "\n이름 : " << a.name << "\n번호 : " << a.phone << endl;
-	cout <<"전공 : " << a.major << "\n주소 : " << a.address << endl;
+
 	return 0;
 }
