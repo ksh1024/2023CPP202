@@ -18,6 +18,15 @@ public:
 		major = "뉴미디어소프트웨어";
 		address = "관악구";
 	}
+
+	Student(int _number, string _name, string _phone, string _major, string _address) {
+		number = _number;
+		name = _name;
+		phone = _phone;
+		major = _major;
+		address = _address;
+	}
+
 	//class 멤버 함수를 가질 수 있다
 	void print() {
 		cout << "학번 : " << number << "\n이름 : " << name << "\n번호 : " << phone << endl;
@@ -35,9 +44,12 @@ private:
 };
 int main(void)
 {
-	// 자료형 : Student(class 생략 가능)
-	Student a;
+	//매개변수 없는 생성자
+	//Student a;
+	Student a = Student();
+	//a.print();
 
-	a.print();
+	Student b = Student(2200,"김미림","010-2222-3333","디자인","경기도파주");
+	b.print();
 	return 0;
 }
