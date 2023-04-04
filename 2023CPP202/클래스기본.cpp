@@ -18,7 +18,13 @@ public:
 	string major;
 	string address;
 
-	void print() {
+	//생성자 (constructor) : 객체가 생성될 때 호출되는 함수
+	//생성자를 정의하지 않으면 default로 매개변수가 없는 생성자가 정의된다
+	// Student(){}
+	// 
+ 	//class 멤버 함수를 가질 수 있다
+
+	void print() { 
 		cout << "학번 : " << number << "\n이름 : " << name << "\n번호 : " << phone << endl;
 		cout << "전공 : " << major << "\n주소 : " << address << endl;
 	}
