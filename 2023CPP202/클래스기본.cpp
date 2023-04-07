@@ -55,5 +55,9 @@ int main(void)
 	Student* c = new Student(2219, "장원영", "010-2121-4343", "뉴미디어디자인", "부산");
 	c->print();
 	
+	//동적할당 해제(안하면 메모리 누수현상이 발생)
+	delete c;
+
+
 	return 0;
 }
