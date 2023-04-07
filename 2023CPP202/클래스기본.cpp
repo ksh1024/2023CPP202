@@ -19,14 +19,10 @@ public:
 		address = "관악구";
 	}
 
-	Student(int number, string name, string phone, string major, string address) {
-		//this : 객체 자기자신을 가리키는 포인터(주소값)
-		//멤버변수와 매개변수가 이름이 같아도 구별가능
-		this->number = number;
-		this->name = name;
-		this->phone = phone;
-		this->major = major;
-		this->address = address;
+	Student(int _number, string _name, string _phone, string _major, string _address)
+		//멤버변수 초기화. const/참조형 멤버변수 사용가능
+		:number(_number),name(_name),phone(_phone),major(_major),address(_address)
+	{
 	}
 
 	//class 멤버 함수를 가질 수 있다
