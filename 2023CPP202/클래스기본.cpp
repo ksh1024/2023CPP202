@@ -47,9 +47,13 @@ int main(void)
 	Student a = Student();
 	//a.print();
 
-	Student b = Student(2200,"김미림","010-2222-3333","디자인","경기도파주");
-	b.print();
+	//정적할당
+	//Student b = Student(2200,"김미림","010-2222-3333","디자인","경기도파주");
+	//b.print();
 
+	//동적할당된 변수는 포인터로 접근한다
+	Student* c = new Student(2219, "장원영", "010-2121-4343", "뉴미디어디자인", "부산");
+	c->print();
 	
 	return 0;
 }
