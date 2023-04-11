@@ -12,18 +12,27 @@ public:
 	//생성자 (constructor) : 객체가 생성될 때 호출되는 함수
 	//생성자는 반환형을 쓰지않는다. void쓸시 오류 발생
 	//생성자를 정의하지 않으면 default로 매개변수가 없는 생성자가 정의된다
-	Student() {
-		number = 2222;
-		name = "아이유";
-		phone = "010-1234-1234";
-		major = "뉴미디어소프트웨어";
-		address = "관악구";
-	}
+	Student() {}
 
 	Student(int _number, string _name, string _phone, string _major, string _address)
 		//멤버변수 초기화. const/참조형 멤버변수 사용가능
 		:number(_number),name(_name),phone(_phone),major(_major),address(_address)
 	{
+	}
+	void set_number(int _number) {
+		number = _number;
+	}
+	void set_name(string _name) {
+		name = _name;
+	}
+	void set_phone(string _phone) {
+		phone = _phone;
+	}
+	void set_major(string _major) {
+		major = _major;
+	}
+	void set_address(string _address) {
+		address = _address;
 	}
 
 	//class 멤버 함수를 가질 수 있다
@@ -52,10 +61,10 @@ int main(void)
 	//Student b = Student(2200,"김미림","010-2222-3333","디자인","경기도파주");
 	//b.print();
 
-	Student c[2];
-	for (int i = 0; i <= 1; i++) {//sizeof(c)/sizeof(Student)
-		c[i].print();
-	}
+	//Student c[2];
+	//for (int i = 0; i <= 1; i++) {//sizeof(c)/sizeof(Student)
+	//	c[i].print();
+	//}
 
 	//동적할당 : 실행시간(runtime)에 메모리 크기가 결정(메모리 heap영역)
 	//동적할당된 변수는 포인터로 접근한다
@@ -66,6 +75,18 @@ int main(void)
 	//delete c;
 
 	Student* d = new Student[2];
+	d[0].set_name("박진영");
+	d[0].set_address("하늘아파트");
+	d[0].set_number(3205);
+	d[0].set_major("뉴미디어소프트웨어과");
+	d[0].set_phone("010-3333-2222");
+
+	d[1].set_name("선미");
+	d[1].set_address("우주아파트");
+	d[1].set_number(3211);
+	d[1].set_major("뉴미디어소프트웨어과");
+	d[1].set_phone("010-3439-2222");
+
 	for (int i = 0; i <= 1; i++) {
 		d[i].print(); //배열의 요소에 해당하는 객체는 멤버를 .으로 접근
 	}
