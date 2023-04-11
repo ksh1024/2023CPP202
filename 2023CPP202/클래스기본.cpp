@@ -45,21 +45,31 @@ int main(void)
 {
 	//매개변수 없는 생성자
 	//Student a;
-	Student a = Student();
+	//Student a = Student();
 	//a.print();
 
 	//정적할당 : 컴파일 시간에 메모리 크기가 결정
 	//Student b = Student(2200,"김미림","010-2222-3333","디자인","경기도파주");
 	//b.print();
 
+	Student c[2];
+	for (int i = 0; i <= 1; i++) {//sizeof(c)/sizeof(Student)
+		c[i].print();
+	}
+
 	//동적할당 : 실행시간(runtime)에 메모리 크기가 결정(메모리 heap영역)
 	//동적할당된 변수는 포인터로 접근한다
-	Student* c = new Student(2219, "장원영", "010-2121-4343", "뉴미디어디자인", "부산");
-	c->print();
-	
-	//동적할당 해제(안하면 메모리 누수현상이 발생)
-	delete c;
+	//Student* c = new Student(2219, "장원영", "010-2121-4343", "뉴미디어디자인", "부산");
+	//c->print();   //c의 멤버는 ->로 접근
+	//
+	////동적할당 해제(안하면 메모리 누수현상이 발생)
+	//delete c;
 
+	Student* d = new Student[2];
+	for (int i = 0; i <= 1; i++) {
+		d[i].print(); //배열의 요소에 해당하는 객체는 멤버를 .으로 접근
+	}
+	delete[] d;
 
 	return 0;
 }
