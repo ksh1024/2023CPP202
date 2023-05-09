@@ -15,11 +15,11 @@ public:
 	}
 
 	//복사생성자 (별도의 정의가 없으면 컴파일러가 알아서 만들어 줌)
-	
-	MString(const MString& rhs) 
+	//TODO : 소멸자 호출 시 에러발생
+	MString(const MString& rhs)
 		:c_str_(rhs.c_str_), size_(rhs.size_)
 	{
-
+		cout << "복사생성자 호출 " << endl;
 
 	}
 
