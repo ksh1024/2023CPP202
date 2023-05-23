@@ -10,9 +10,9 @@ int main() {
 
 	RenderWindow window(VideoMode(640, 480), "Snake Game");
 
-	//컴퓨터가 1초 동안 처리하는 횟수를 120으로 제한한다.  
-	//Frame Per Second를 120으로 조절
-	window.setFramerateLimit(120);
+	//컴퓨터가 1초 동안 처리하는 횟수를 180으로 제한한다.  
+	//Frame Per Second를 180으로 조절
+	window.setFramerateLimit(180);
 
 	RectangleShape snake;
 	snake.setFillColor(Color::White);
@@ -33,13 +33,14 @@ int main() {
 			if (e.type == Event::Closed)
 				window.close();
 		}
+		//방향키가 동시에 눌러지지 않도록 else 처리
 		if (Keyboard::isKeyPressed(Keyboard::Right))
 			snake.move(1, 0);
-		if (Keyboard::isKeyPressed(Keyboard::Left))
+		else if (Keyboard::isKeyPressed(Keyboard::Left))
 			snake.move(-1, 0);
-		if (Keyboard::isKeyPressed(Keyboard::Up))
+		else if (Keyboard::isKeyPressed(Keyboard::Up))
 			snake.move(0, -1);
-		if (Keyboard::isKeyPressed(Keyboard::Down))
+		else if (Keyboard::isKeyPressed(Keyboard::Down))
 			snake.move(0, 1);
 
 		//뱀의 범위에 사과가 들어와 있는 경우
