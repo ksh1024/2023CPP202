@@ -10,9 +10,9 @@ int main() {
 
 	RenderWindow window(VideoMode(640, 480), "Snake Game");
 
-	//컴퓨터가 1초 동안 처리하는 횟수를 60으로 제한한다.  
-	//Frame Per Second를 60으로 조절
-	window.setFramerateLimit(60);
+	//컴퓨터가 1초 동안 처리하는 횟수를 120으로 제한한다.  
+	//Frame Per Second를 120으로 조절
+	window.setFramerateLimit(120);
 
 	RectangleShape snake;
 	snake.setFillColor(Color::White);
@@ -41,6 +41,14 @@ int main() {
 			snake.move(0, -1);
 		if (Keyboard::isKeyPressed(Keyboard::Down))
 			snake.move(0, 1);
+
+		//뱀의 범위에 사과가 들어와 있는 경우
+		//(뱀이 사과를 먹었을 때,
+		if (snake.getGlobalBounds().intersects(apple.getGlobalBounds())) {
+			apple.setPosition(rand() % (640 - 50), rand() % (480 - 50));
+		}
+
+
 
 		window.clear();
 		window.draw(snake);
