@@ -5,6 +5,9 @@ using namespace sf;
 int main() {
 
 	RenderWindow window(VideoMode(640, 480), "Snake Game");
+	//컴퓨터가 1초 동안 처리하는 횟수를 60으로 제한한다.  
+	//Frame Per Second를 60으로 조절
+	window.setFramerateLimit(60);
 
 	RectangleShape snake;
 	snake.setFillColor(Color::White);
@@ -13,7 +16,7 @@ int main() {
 
 
 	
-	while (window.isOpen()) {
+	while (window.isOpen()) { 
 		Event e;
 		while (window.pollEvent(e)) {
 			//윈도우의 x를 눌렀을 때 창이 닫아지도록
