@@ -12,7 +12,7 @@ using namespace sf;
 
 class Snake {
 
-private:
+public:
 	int dir_;
 	int x_;
 	int y_;
@@ -20,6 +20,13 @@ private:
 
 };
 
+class Apple {
+
+public:
+	int x_;
+	int y_;
+	RectangleShape sprite_;
+};
 int main() {
 
 	const int WIDTH = 1000;						//픽셀 너비
@@ -32,22 +39,22 @@ int main() {
 
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Snake Game");
 
-	//컴퓨터가 1초 동안 처리하는 횟수를 5으로 제한한다.  
-	//Frame Per Second를 5으로 조절
-	window.setFramerateLimit(5);
+	//컴퓨터가 1초 동안 처리하는 횟수를 10으로 제한한다.  
+	//Frame Per Second를 10으로 조절
+	window.setFramerateLimit(10);
 
-	RectangleShape snake;
-	int snake_x = 1, snake_y = 2;//뱀의 그리드 좌표
-	int snake_dir = DIR_DOWN;	 //뱀이 이동하는 방향
-	snake.setFillColor(Color::White);
-	snake.setPosition(snake_x * BLOCK_SIZE, snake_y * BLOCK_SIZE);
-	snake.setSize(Vector2f(BLOCK_SIZE, BLOCK_SIZE));
+	Snake snake;
+	snake.x_ = 1, snake.y_ = 2;//뱀의 그리드 좌표
+	snake.dir_ = DIR_DOWN;	 //뱀이 이동하는 방향
+	snake.sprite_.setFillColor(Color::White);
+	snake.sprite_.setPosition(snake.x_ * BLOCK_SIZE, snake.y_ * BLOCK_SIZE);
+	snake.sprite_.setSize(Vector2f(BLOCK_SIZE, BLOCK_SIZE));
 
-	RectangleShape apple;
-	int apple_x = rand() % G_WIDTH, apple_y = rand() % G_HEIGHT;
-	apple.setFillColor(Color::Red);
-	apple.setPosition(apple_x * BLOCK_SIZE, apple_y * BLOCK_SIZE);
-	apple.setSize(Vector2f(BLOCK_SIZE, BLOCK_SIZE));
+	Apple apple;
+	apple.x_ = rand() % G_WIDTH, apple.y_ = rand() % G_HEIGHT;
+	apple.sprite_.setFillColor(Color::Red);
+	apple.sprite_.setPosition(apple.x_ * BLOCK_SIZE, apple.y_ * BLOCK_SIZE);
+	apple.sprite_.setSize(Vector2f(BLOCK_SIZE, BLOCK_SIZE));
 
 	
 	while (window.isOpen()) {
@@ -60,45 +67,45 @@ int main() {
 		//input
 		//방향키가 동시에 눌러지지 않도록 else 처리
 		if (Keyboard::isKeyPressed(Keyboard::Right)) {
-			snake_dir = DIR_RIGHT;
+			snake.dir_ = DIR_RIGHT;
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Left)) {
-			snake_dir = DIR_LEFT;
-		snake.move(-1, 0);
+			snake.dir_ = DIR_LEFT;
+	
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Up)) {
-			snake_dir = DIR_UP;
+			snake.dir_ = DIR_UP;
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Down)) {
-			snake_dir = DIR_DOWN;
+			snake.dir_ = DIR_DOWN;
 		}
 		//update
-		if (snake_dir == DIR_UP) {
-			snake_y--;
+		if (snake.dir_ == DIR_UP) {
+			snake.y_--;
 		}
-		else if (snake_dir == DIR_DOWN) {
-			snake_y++;
+		else if (snake.dir_ == DIR_DOWN) {
+			snake.y_++;
 		}
-		else if (snake_dir == DIR_RIGHT) {
-			snake_x++;
+		else if (snake.dir_ == DIR_RIGHT) {
+			snake.x_++;
 		}
-		else if (snake_dir == DIR_LEFT) {
-			snake_x--;
+		else if (snake.dir_ == DIR_LEFT) {
+			snake.x_--;
 		}
-		snake.setPosition(snake_x * BLOCK_SIZE, snake_y * BLOCK_SIZE);
+		snake.sprite_.setPosition(snake.x_ * BLOCK_SIZE, snake.y_ * BLOCK_SIZE);
 
 		//(뱀이 사과를 먹었을 때)
-		if (snake_x==apple_x && snake_y==apple_y) {
-			apple_x = rand() % G_WIDTH, apple_y = rand() % G_HEIGHT;
-			apple.setPosition(apple_x*BLOCK_SIZE,apple_y*BLOCK_SIZE);
+		if (snake.x_==apple.x_ && snake.y_==apple.y_) {
+			apple.x_ = rand() % G_WIDTH, apple.y_ = rand() % G_HEIGHT;
+			apple.sprite_.setPosition(apple.x_*BLOCK_SIZE,apple.y_*BLOCK_SIZE);
 		}
 
 
 		//render
 		window.clear();
 
-		window.draw(snake);
-		window.draw(apple); //draw를 늦게 할수록 더 위에 있다
+		window.draw(snake.sprite_);
+		window.draw(apple.sprite_); //draw를 늦게 할수록 더 위에 있다
 
 		window.display();
 	}
