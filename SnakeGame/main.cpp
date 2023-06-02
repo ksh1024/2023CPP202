@@ -77,6 +77,13 @@ int main() {
 			if (e.type == Event::Closed)
 				window.close();
 		}
+		//머리 이외의 몸통
+		for (int i = snake.length_ - 1; i > 0; i--) {
+			snake.body_[i].x_ = snake.body_[i - 1].x_;
+			snake.body_[i].y_ = snake.body_[i - 1].y_;
+			snake.body_[i].sprite_.setPosition(snake.body_[i].x_ * BLOCK_SIZE, snake.body_[i].y_ * BLOCK_SIZE);
+		}
+
 		//input
 		//방향키가 동시에 눌러지지 않도록 else 처리
 		if (Keyboard::isKeyPressed(Keyboard::Right)) {
@@ -107,23 +114,16 @@ int main() {
 		}
 		snake.body_[0].sprite_.setPosition(snake.body_[0].x_ * BLOCK_SIZE, snake.body_[0].y_ * BLOCK_SIZE);
 
-		//머리 이외의 몸통
-		for (int i = snake.length_ - 1; i > 0; i-- ) {
-			snake.body_[i].x_ = snake.body_[i - 1].x_;
-			snake.body_[i].y_ = snake.body_[i - 1].y_;
-			snake.body_[i].sprite_.setPosition(snake.body_[i].x_ * BLOCK_SIZE, snake.body_[i].y_ * BLOCK_SIZE);
-		}
-
+		
 
 		//(뱀이 사과를 먹었을 때)
-		//todo : 사과를 두개이상 먹어야 길이가 늘어나는 오류
 		if (snake.body_[0].x_ == apple.x_ && snake.body_[0].y_ == apple.y_) {
 			//사과 위치전환
 			apple.x_ = rand() % G_WIDTH, apple.y_ = rand() % G_HEIGHT;
 			apple.sprite_.setPosition(apple.x_*BLOCK_SIZE,apple.y_*BLOCK_SIZE);
 
 			//뱀의 길이를 변화
-			if(snake.length_<20)
+			if(snake.length_ < 20)
 				snake.length_++;
 		}
 
