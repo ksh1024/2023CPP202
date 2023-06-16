@@ -37,8 +37,8 @@ public:
 	~Crane() {
 		cout << "두루미 소멸자" << endl;
 	}
-
-	void Bark() {
+	//오타같은 실수를 방지하지 위해 override 키워드를 사용(Java의 @Override)
+	void Bark() override {
 		cout << "두루두루" <<endl;
 	}
 private:
@@ -47,12 +47,7 @@ private:
 
 
 int main() {
-	Animal* animal = new Animal(18, "동물이");
-	animal->Bark(); // 동물 짖는다
-	delete animal; //포인터 변수가 가리키는 객체를 지움. 포인터 변수는 지워지지 않음.
-
-
-	animal= new Crane(3, "지우",108);
+	Animal* animal= new Crane(3, "지우",108);
 	animal->Bark();	//두루두루 (정적 바인딩으로 인해 부모의 멤버함수를 호출)
 	delete animal;
 	return 0;
