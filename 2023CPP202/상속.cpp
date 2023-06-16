@@ -11,13 +11,14 @@ public:
 	~Animal() {
 		cout << "동물 소멸자" << endl;
 	}
-	void Bark() { 
+
+	virtual void Bark() { 
 		cout << "동물 짖는다" << endl;
 	}
-	void Eat() {
+	virtual void Eat() {
 		cout << "동물 먹는다" << endl;
 	}
-	void Hunt() {
+	virtual void Hunt() {
 		cout << "동물 사냥한다" << endl;
 	}
 private:
@@ -37,7 +38,7 @@ public:
 		cout << "두루미 소멸자" << endl;
 	}
 
-	void bark() {
+	void Bark() {
 		cout << "두루두루" <<endl;
 	}
 private:
@@ -52,7 +53,7 @@ int main() {
 
 
 	animal= new Crane(3, "지우",108);
-	animal->Bark();	//동물 짖는다 (정적 바인딩으로 인해 부모의 멤버함수를 호출)
+	animal->Bark();	//두루두루 (정적 바인딩으로 인해 부모의 멤버함수를 호출)
 	delete animal;
 	return 0;
 }
