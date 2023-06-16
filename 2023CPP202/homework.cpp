@@ -1,77 +1,42 @@
-#include <iostream>	// cout, endl 사용
-#include <string.h>	// strcpy() 사용
+#include <iostream>
+#include <string>
 
 using namespace std;
 
-class Student
-{
-private:
-	int nHakbun;
-	char* sName;
-
+class Person{
 public:
-	// 생성자 : 객체가 생성되면 자동으로 호출되는 함수
-	// 반환형을 갖고있지 않는다
-	Student();
-	Student(int Hakbun, const char* Name);
-	Student(const Student& rhs);
-	~Student();
-
-	void show();
+	Person(string name, int hakbun) {
+		name_ = name;
+		hakbun_ = hakbun;
+	}
+	void PrintShow() {
+		cout << "이름 : " << name_ << endl;
+		cout << "학번 : " << hakbun_<< endl;
+		
+	}
+private:
+	int hakbun_;
+	string name_;
 
 };
 
-Student::Student()
-{
-}
 
-// 멤버변수를 초기화 할 수 있으며 따라서,
-// const형 변수와 참조형 변수를 멤버변수로 할 수 있다.
-Student::Student(int Hakbun, const char* Name)
-	: nHakbun(Hakbun)	// 멤버변수(매개변수)
-{
-	cout << "일반생성자 호출." << endl;
-	int len = strlen(Name) + 1;		// 공간의 갯수 파악
-	sName = new char[len];			// 갯수만큼 메모리 할당
-	strcpy(sName, Name);
-}
-
-
-// 복사생성자
-Student::Student(const Student& rhs)
-	: nHakbun(rhs.nHakbun) {
-	cout << "복사 생성자 호출." << endl;
-	int len = strlen(rhs.sName) + 1;
-	sName = new char[len];
-	strcpy(sName, rhs.sName);
-}
+class Student : public Person {
+public:
+	Student(string name, int hakbun, string university) : Person(name, hakbun) {
+		university_ = university;
+	}
+	void PrintShow() {
+		Person::PrintShow();
+		cout << "대학 : " <<university_ << endl;
+	}
+private:
+	string university_;
+};
 
 
-Student::~Student()
-{
-	delete[] sName;
-	cout << "소멸자 호출" << endl;
-}
-
-void Student::show()
-{
-	cout << "학번은 " << nHakbun << "입니다" << endl;
-	cout << "이름은 " << sName << "입니다" << endl << endl;
-}
-
-int main(void)
-{
-	// "일반생성자 호출" 출력
-	Student stu1 = Student(1111, "JWP");
-	// (1111, "JWP")가 복사됨. 일반생성자 호출X
-	Student stu2 = stu1;
-
-	stu1.show();
-	stu2.show();
-
+int main() {
+	Student* student = new Student("김미림", 2203, "서울대");
+	student->PrintShow();
 	return 0;
 }
-
-
-
-
