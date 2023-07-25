@@ -9,6 +9,7 @@
 #define DIR_LEFT	3
 
 #define BODY_MAX	20
+
 using namespace sf;
 
 const int BLOCK_SIZE = 50;					//한 칸이 가지고 있는 픽셀
@@ -28,15 +29,20 @@ public:
 class Snake {
 
 public:
-	Snake(int dir, int length) : dir_(dir), length_(length) {}
+	Snake(int dir, int length, int score = 0) : dir_(dir), length_(length), score_(score) {}
 
 	int GetDir(void) { return dir_; }
 	int GetLength(void) { return length_; }
+	int GetScore() { return score_; }
 	Object* GetBody() { return body_; }
 
 	void SetDir(int dir) { dir_ = dir; }
 	void SetLength(int length) { length_ = length; }
-	void IncLength(void) { length_++;} //increase length
+	void SetScore(int score) { score_ = score; }
+
+	void IncLength(void) { length_++; }
+	void IncScore(int val) { score_ += val; }
+
 
 	void InitBody(void) {
 		// body 초기화
@@ -80,6 +86,7 @@ public:
 private:
 	int dir_;
 	int length_;
+	int score_;
 	Object body_[BODY_MAX];
 };
 
@@ -92,7 +99,6 @@ public:
 	RectangleShape sprite_;
 };
 int main() {
-
 	
 	srand(time(NULL));
 
@@ -102,8 +108,25 @@ int main() {
 	//Frame Per Second를 15으로 조절
 	window.setFramerateLimit(15);
 
+	Font font;
+	if (!font.loadFromFile("C:\\Windows\\Fonts\\arial.ttf"))
+	{
+		printf("폰트 불러오기 실패");
+		return -1;
+	}
+
+	Text t_info;
+	t_info.setFont(font);
+	t_info.setFillColor(Color::Magenta);
+	t_info.setCharacterSize(50);
+	t_info.setPosition(0, 0);
+
+
+	char t_info_buf[100];
+
+
 	Snake snake = Snake(DIR_DOWN, 1);
-	snake.InitBody();
+	snake.InitBody(); //initialize
 
 
 	Apple apple;
@@ -122,7 +145,10 @@ int main() {
 		}
 		
 		//update
-		// 
+		
+		sprintf(t_info_buf, "score : %d \n", snake.GetScore());
+		t_info.setString(t_info_buf);
+
 		snake.UpdateBody();
 		snake.UpdateHead();
 	
@@ -143,13 +169,14 @@ int main() {
 			snake.SetDir(DIR_DOWN);
 		}
 		
-		
 		//TODO  : GetBody() 멤버접근 방법 바꿔보기
 		//(뱀이 사과를 먹었을 때)
 		if (snake.GetBody()[0].x_ == apple.x_ && snake.GetBody()[0].y_ == apple.y_) {
 			//사과 위치전환
 			apple.x_ = rand() % G_WIDTH, apple.y_ = rand() % G_HEIGHT;
 			apple.sprite_.setPosition(apple.x_*BLOCK_SIZE,apple.y_*BLOCK_SIZE);
+
+			snake.IncScore(5);
 
 			//뱀의 길이를 변화
 			if(snake.GetLength() < 20)
@@ -162,7 +189,7 @@ int main() {
 			window.draw(snake.GetBody()[i].sprite_);
 		}
 		window.draw(apple.sprite_); //draw를 늦게 할수록 더 위에 있다
-
+		window.draw(t_info);
 		window.display();
 	}
 
