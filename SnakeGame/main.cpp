@@ -48,7 +48,7 @@ public:
 		// body 초기화
 		for (int i = 0; i < BODY_MAX; i++) {
 			body_[i].x_ = -50, body_[i].y_ = -50; //뱀의 그리드 좌표
-			body_[i].sprite_.setOutlineColor(Color(0, 128, 0));
+			body_[i].sprite_.setOutlineColor(Color::White);
 			body_[i].sprite_.setOutlineThickness(5.0f);
 			body_[i].sprite_.setFillColor(Color::Green);
 			body_[i].sprite_.setPosition(body_[i].x_ * BLOCK_SIZE,body_[i].y_ * BLOCK_SIZE);
