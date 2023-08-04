@@ -18,9 +18,7 @@ public:
 		sprite_->move(x, y);
 	}
 
-	void eat() {
-
-	}
+	virtual void eat(Entity* p) {}
 
 	//getter
 	int get_life(void) { return life_; }
@@ -41,9 +39,12 @@ private:
 class Player : public Entity {
 public :
 	Player(int life, int speed, RectangleShape* sprite, int score)
-		: Entity(life, speed, sprite),score_(score) {
-		
+		: Entity(life, speed, sprite),score_(score) {}
+	
+	void eat(Entity* e)override {
+		e->set_life(0);
 	}
+
 
 private:
 	int score_;
@@ -54,7 +55,6 @@ class Enemy : public Entity{
 public :
 	Enemy(int life, int speed, RectangleShape* sprite, int life_time)
 		:Entity(life, speed, sprite),life_time_(life_time){}
-
 
 private:
 	int life_time_;
@@ -78,9 +78,9 @@ int main(void)
 	e1.setPosition(rand() % 800, rand() % 600);
 	e1.setSize(Vector2f(40, 40));
 
-	Entity* player = new Entity(3, 5, &p);
+	Entity* player = new Player(3, 5, &p, 100);
 
-	Entity* enemy1 = new Entity(1, 3, &e1);
+	Entity* enemy1 = new Enemy(1, 3, &e1, 10);
 
 	while (window.isOpen())
 	{
@@ -105,10 +105,15 @@ int main(void)
 		if (Keyboard::isKeyPressed(Keyboard::Down)) {
 			player->move(0, p_speed);
 		}
+		if (player->get_sprite().getGlobalBounds().intersects(enemy1->get_sprite().getGlobalBounds())) {
+			player->eat(enemy1);
+		}
+
 
 		window.clear();
 
-		window.draw(enemy1->get_sprite());
+		if(enemy1->get_life() > 0 ) //enemy1이 살아있을 때만 화면에  그림
+			window.draw(enemy1->get_sprite());
 		window.draw(player->get_sprite());
 
 		window.display();
