@@ -18,6 +18,10 @@ public:
 		sprite_->move(x, y);
 	}
 
+	void eat() {
+
+	}
+
 	//getter
 	int get_life(void) { return life_; }
 	int get_speed(void) { return speed_; }
@@ -33,6 +37,29 @@ private:
 	int speed_;
 	RectangleShape* sprite_;
 };
+
+class Player : public Entity {
+public :
+	Player(int life, int speed, RectangleShape* sprite, int score)
+		: Entity(life, speed, sprite),score_(score) {
+		
+	}
+
+private:
+	int score_;
+
+};
+
+class Enemy : public Entity{
+public :
+	Enemy(int life, int speed, RectangleShape* sprite, int life_time)
+		:Entity(life, speed, sprite),life_time_(life_time){}
+
+
+private:
+	int life_time_;
+};
+
 
 int main(void)
 {
