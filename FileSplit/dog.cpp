@@ -1,7 +1,4 @@
-#include <iostream>
-using namespace std;
-
-#include "dog.h"
+#include "all.h"
 
 void Dog::bark() {
 	cout << "¸Û¸Û" << endl;
