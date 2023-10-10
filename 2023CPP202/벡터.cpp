@@ -16,8 +16,10 @@ int main() {
 	//꽉찬 공간에 새로운 데이터 넣기
 	arr.push_back(50);
 
-	for (int i = 0; i < arr.size(); i++) {
-		cout << arr[i] << " ";
+	vector<int>::iterator iter;
+	//반복자(iterator)를 활용하여 모든 원소를 출력
+	for (iter = arr.begin(); iter != arr.end(); iter++) {
+		cout << *iter << " ";
 	}
 	
 	return 0;
