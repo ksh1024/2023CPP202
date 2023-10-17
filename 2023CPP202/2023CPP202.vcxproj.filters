@@ -21,7 +21,7 @@
     <ClCompile Include="homework.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="맵.cpp">
+    <ClCompile Include="맵벡터혼자서.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
