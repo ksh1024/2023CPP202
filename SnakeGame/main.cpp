@@ -3,11 +3,6 @@
 #include <time.h>   //time()
 #include <stdio.h>
 
-#define DIR_UP		0
-#define DIR_DOWN	1
-#define DIR_RIGHT	2
-#define DIR_LEFT	3
-
 enum Dir {
 	UP,		// 0
 	DOWN,	// 1
