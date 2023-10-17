@@ -16,9 +16,10 @@ int main() {
 	//꽉찬 공간에 새로운 데이터 넣기
 	arr.push_back(50);
 	
-	vector<int>::iterator iter;
 	//반복자(iterator)를 활용하여 모든 원소를 출력
-	for (iter = arr.begin(); iter != arr.end(); iter++) {
+	//vector<int>::iterator iter;
+	//복잡한 자료형을 auto로 간소화
+	for (auto iter = arr.begin(); iter != arr.end(); iter++) {
 		cout << *iter << " ";
 	}
 
